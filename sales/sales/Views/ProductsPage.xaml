@@ -1,0 +1,92 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             BindingContext="{Binding Main, Source={StaticResource Locator}}"
+             xmlns:i18n="clr-namespace:sales.Helpers"
+             Title="{i18n:Translate Product}"
+             x:Class="sales.Views.ProductsPage">
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Add"
+            IconImageSource="ic_action_add_circle.png"
+                    Command="{Binding AddProductCommand}" />
+    </ContentPage.ToolbarItems>
+    
+    <ContentPage.Content>
+        <StackLayout BindingContext="{Binding Products}"
+                     Padding="5">
+
+            <SearchBar 
+                HeightRequest="30"
+                Text="{Binding Filter}"
+                SearchCommand="{Binding SearchCommand}"
+                Placeholder="{i18n:Translate Search}">
+                
+            </SearchBar>
+            <ListView 
+                HasUnevenRows="True"        
+                ItemsSource="{Binding Products}"
+                IsRefreshing="{Binding IsRefreshing}"
+                IsPullToRefreshEnabled="True"
+                RefreshCommand="{Binding RefreshCommand}">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+
+                            <ViewCell.ContextActions>
+                                <MenuItem Text="{i18n:Translate Edit}" Command="{Binding EditProductCommand}" />
+                                <MenuItem Text="{i18n:Translate Delete}" Command="{Binding DeleteProductCommand}" IsDestructive="True" />
+                            </ViewCell.ContextActions>
+                            <Grid>
+                                <Grid.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding EditProductCommand}">
+                                        
+                                    </TapGestureRecognizer>
+                                </Grid.GestureRecognizers>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="Auto" />
+                                </Grid.ColumnDefinitions>
+
+                                <Image Grid.Column="0"
+                                       Source="{Binding ImageFullPath}"
+                                       WidthRequest="100">
+                                    
+                                </Image>
+
+                                <StackLayout Grid.Column="1">
+                                    <Label  FontAttributes="Bold"  
+                                        Text="{Binding description}"
+                                       ></Label>
+
+                                    <Label 
+                                        Text="{Binding remark}">
+                                    </Label>
+                                </StackLayout>
+                                
+                             
+                                <Label  Grid.Column="2"
+                                         HorizontalOptions="End"   
+                                         VerticalOptions="Center"
+                                        Text="{Binding price,StringFormat='{0:C2}'}">
+
+                                </Label>
+                                <Image
+                                    Grid.Column="3"
+                                    VerticalOptions="Center"
+                                    Source="arrow_right">
+                                    
+                                </Image>
+                            </Grid>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

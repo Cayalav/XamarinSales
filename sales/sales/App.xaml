@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Application xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:infra="clr-namespace:sales.Infrastructure"
+             x:Class="sales.App">
+    <Application.Resources>
+        <ResourceDictionary>
+                
+            <!--Locator-->
+            <infra:InstanceLocator x:Key="Locator" />
+
+            <x:String x:Key="UrlApi">http://192.168.1.58:8080</x:String>
+
+            <x:String x:Key="UrlPrefix">/api</x:String>
+
+            <x:String x:Key="UrlProductsController">/products</x:String>
+            
+            <x:String x:Key="UrlUsersController">/users</x:String>
+            
+            <x:String x:Key="UrlCategoriesController">/categories</x:String>
+
+            
+            <!-- Facebook -->
+            <x:String x:Key="FacebookAppID">1152017441850778</x:String>
+            <x:String x:Key="FacebookAuthURL">https://www.facebook.com/dialog/oauth/</x:String>
+            <x:String x:Key="FacebookRedirectURL">https://www.facebook.com/connect/login_success.html</x:String>
+            <x:String x:Key="FacebookScope">email</x:String>
+        </ResourceDictionary>
+
+    </Application.Resources>
+</Application>
